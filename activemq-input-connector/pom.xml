@@ -135,10 +135,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.opentext.exstream.server</groupId>
+			<groupId>com.streamserve</groupId>
 			<artifactId>jstrs</artifactId>
-			<version>16.4.0</version>
-			<scope>provided</scope>
+			<version>16.6.2_GA_327</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/jstrs-16.6.2_GA_327.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

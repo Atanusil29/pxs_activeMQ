@@ -28,6 +28,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/jstrs-16.6.2_GA_327.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

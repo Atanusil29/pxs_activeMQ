@@ -96,31 +96,22 @@ public class ActiveMQInputConnector implements StrsInConnectable {
 		return true;
 	}
 
-	private static String replaceLast(String string, String toReplace, String replacement) {
-		int pos = string.lastIndexOf(toReplace);
-		if (pos > -1) {
-			return string.substring(0, pos)
-					+ replacement
-					+ string.substring(pos + toReplace.length());
-		} else {
-			return string;
-		}
-	}
-
 	private byte[] process() throws Exception {
 		List<String> messages = jmsConsumer.receiveAllMessages(queueName, receiveTimeout, timeLimit, countLimit);
 		if (messages == null || messages.size() == 0) {
 			return null;
 		}
 
-		log.info("To send {} customers to {}", messages.size(), queueName);
+		log.info("Received {} customers from {}", messages.size(), queueName);
 
-		String data = "";
+		//Merge driver files together into a single data stream
+		StringBuffer data = new StringBuffer();
 		for (String driver : messages) {
-			data += replaceLast(driver.replaceFirst("\\{", ""), "}", ",\r\n");
+			data.append(driver);
+			data.append(",\r\n");	//append a comma & line-break in between each JSON file 
 		}
-		data = "{\r\n" + data.substring(0, data.length() - 3) + "\r\n" + "}\r\n";
-		return data.getBytes("UTF-8");
+		data.delete(data.length()-3,data.length()); //remove last comma & line-break from JSON file
+		return data.toString().getBytes("UTF-8");
 	}
 
 	public static void main(String args[]) {
