@@ -24,10 +24,10 @@ public class ActiveMQInputConnector implements StrsInConnectable {
 		this.jmsConsumer = jmsConsumer;
 	}
 
-	private static final String PROPERTY_QUEUE_NAME = "queue.name";
-	private static final String PROPERTY_RECEIVE_TIMEOUT = "receive.timeout";
-	private static final String PROPERTY_TIME_LIMIT = "time.limit";
-	private static final String PROPERTY_COUNT_LIMIT = "count.limit";
+	protected static final String PROPERTY_QUEUE_NAME = "queue.name";
+	protected static final String PROPERTY_RECEIVE_TIMEOUT = "receive.timeout";
+	protected static final String PROPERTY_TIME_LIMIT = "time.limit";
+	protected static final String PROPERTY_COUNT_LIMIT = "count.limit";
 
 	private String queueName = "queue-01";
 	private long receiveTimeout = 200;
@@ -96,7 +96,7 @@ public class ActiveMQInputConnector implements StrsInConnectable {
 		return true;
 	}
 
-	private byte[] process() throws Exception {
+	byte[] process() throws Exception {
 		List<String> messages = jmsConsumer.receiveAllMessages(queueName, receiveTimeout, timeLimit, countLimit);
 		if (messages == null || messages.size() == 0) {
 			return null;

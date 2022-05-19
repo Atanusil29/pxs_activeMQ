@@ -1,0 +1,30 @@
+<configuration>
+
+	<!-- 
+	
+	<property name="LOG_FILE" value="activemq-input-connector" />
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_FILE}.log</file>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender> 
+	-->
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	<logger name="com.opentext.exstream.projects.proximus" level="DEBUG"/>
+	
+	<root>
+		<level value="ERROR" />
+		<!-- <appender-ref ref="FILE" />-->
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

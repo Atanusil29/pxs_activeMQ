@@ -38,6 +38,7 @@ public class JmsConsumer {
 				log.debug("Receive timeout {} for {}", receiveTimeout, destination);
 				break;
 			}
+			//log.debug("Receive message from queue {}", destination);
 			TextMessage textMessage = (TextMessage) message;
 			messages.add(textMessage.getText());
 			count++;
